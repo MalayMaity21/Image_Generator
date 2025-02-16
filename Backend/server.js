@@ -1,63 +1,4 @@
-// const express = require("express");
-// const axios = require("axios");
-// const fs = require("fs");
-// const path = require("path");
-// const cors = require("cors");
-// const PORT = 3000;
-
-
-// const app = express();
-
-
-// app.get("/", (req, res) => {
-//   res.send("root directory");
-// })
-
-
-
-// require("dotenv").config();
-
-
-// const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-// const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
-
-// async function generateImage(prompt) {
-//   try {
-//     const response = await axios.post(
-//       GEMINI_API_URL,
-//       {
-//         contents: [{ parts: [{ text: prompt }] }],
-//       },
-//       {
-//         headers: { "Content-Type": "application/json" },
-//       }
-//     );
-
-//     // Extract image response
-//     const imageData = response.data?.candidates?.[0]?.content?.parts?.[0]?.text;
-//     console.log("Generated Image Data:", imageData);
-//   } catch (error) {
-//     console.error(
-//       "Error generating image:",
-//       error.response?.data || error.message
-//     );
-//   }
-// }
-
-
-// app.listen(PORT, () => {
-//   console.log(`Server is Listening on port ${PORT}`);
-// })
-
-// // Example usage
-// generateImage("what is linear data structure");
-
-
-
-
-
-
-
+//Full Backend Code with post request
 
 const express = require("express");
 const axios = require("axios");
@@ -77,10 +18,14 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Gemini API Server");
 });
 
-// New Route to Get Generated Text
-app.get("/generate-text", async (req, res) => {
+// API Endpoint for Text Generation (POST request)
+app.post("/generate-text", async (req, res) => {
   try {
-    const prompt = req.query.prompt || "Explain linear data structures";
+    const { prompt } = req.body; // Get prompt from frontend request body
+
+    if (!prompt) {
+      return res.status(400).json({ error: "Prompt is required!" });
+    }
 
     const response = await axios.post(
       GEMINI_API_URL,
