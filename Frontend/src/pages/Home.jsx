@@ -117,7 +117,7 @@ export default function Home() {
 
   const handleSubmit = () => {
     axios
-      .post("http://localhost:3000/generate-text", { prompt: userPrompt })
+      .post("https://lexigen3.onrender.com/generate-text", { prompt: userPrompt })
       .then((response) => setGeneratedText(response.data.generatedText))
       .catch((error) => console.log(error));
   };
