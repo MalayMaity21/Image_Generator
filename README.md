@@ -1,3 +1,3 @@
-## AI Image Generator ⚡
+## AI Text Generator ⚡
 
-Ai powered image generator by user prompt
+Ai powered text generator by user prompt
