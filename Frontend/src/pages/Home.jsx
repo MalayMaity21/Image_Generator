@@ -2,11 +2,12 @@ import axios from "axios";
 import { useState } from "react";
 export default function Home() {
   const [userPrompt, setUserPrompt] = useState("");
+  const [generateText, setGeneratedText] = useState([]);
   const handleSubmit = () => {
-    console.log("clicked");
+    console.log(userPrompt);
     axios
       .post("http://localhost:3000/generate-text", { prompt: userPrompt })
-      .then((response) => console.log(response.data))
+      .then((response) => setGeneratedText(response.data))
       .catch((error) => console.log(error));
   };
 
@@ -32,6 +33,9 @@ export default function Home() {
         >
           Generate
         </button>
+      </div>
+      <div>
+        <p>{generateText.generatedText}</p>
       </div>
     </div>
   );
