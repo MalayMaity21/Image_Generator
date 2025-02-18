@@ -3,12 +3,12 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <>
+    <main>
       <Navbar />
-      <section className=" w-full">
+      <section className="relative w-full py-4">
         <Home />
       </section>
-    </>
+    </main>
   );
 }
 
