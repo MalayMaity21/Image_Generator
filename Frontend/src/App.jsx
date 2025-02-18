@@ -5,7 +5,7 @@ function App() {
   return (
     <main>
       <Navbar />
-      <section className="relative w-full py-4">
+      <section className=" w-full py-4">
         <Home />
       </section>
     </main>

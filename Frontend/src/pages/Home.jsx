@@ -31,10 +31,10 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col w-full items-center justify-start h-auto px-4 overflow-auto">
+    <div className="flex flex-col w-full items-center justify-center h-auto px-4 overflow-auto z-1">
       <div>
         <div>
-          <h1 className="text-6xl font-bold text-center mb-4 max-w-5xl text-gray-300 capitalize">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-center mb-4 max-w-5xl text-gray-300 capitalize">
             how Can i help you ?
           </h1>
 
@@ -42,7 +42,7 @@ export default function Home() {
             <input
               type="text"
               placeholder="Enter the prompt"
-              className="w-full my-6 p-4 pr-24 border-2  text-black rounded-lg focus:outline-none bt"
+              className="w-full my-3 md:my-6 p-4 pr-24 border-2  text-black rounded-lg focus:outline-none bt"
               value={userPrompt}
               onChange={(e) => setUserPrompt(e.target.value)}
             />
@@ -56,9 +56,9 @@ export default function Home() {
         </div>
         <div>
           {loading && <Loading />}
-          <div className="max-w-2xl">
+          <div className="">
             {generatedText && (
-              <pre className="mt-6 p-4 border-2 text-black rounded-lg focus:outline-none overflow-y-auto max-w-2xl w-full h-[28rem] txt">
+              <pre className="mt-6 p-4 border-2 text-black rounded-lg focus:outline-none overflow-y-auto max-w-2xl w-full h-[38rem] md:h-[28rem] txt">
                 <code className="block whitespace-pre-wrap break-words">
                   <Typewriter
                     words={[
