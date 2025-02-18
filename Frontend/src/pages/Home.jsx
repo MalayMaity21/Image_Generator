@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import Loading from "../components/Loader/Loader";
+import { Typewriter } from "react-simple-typewriter";
 export default function Home() {
   const [userPrompt, setUserPrompt] = useState("");
   const [generatedText, setGeneratedText] = useState("");
@@ -59,7 +60,15 @@ export default function Home() {
             {generatedText && (
               <pre className="mt-6 p-4 border-2 text-black rounded-lg focus:outline-none overflow-y-auto max-w-2xl w-full h-[28rem] txt">
                 <code className="block whitespace-pre-wrap break-words">
-                  {generatedText.replace(/\*\*/g, "").replace(/\*/g, "- ")}
+                  <Typewriter
+                    words={[
+                      generatedText.replace(/\*\*/g, "").replace(/\*/g, "- "),
+                    ]}
+                    // loop={false}
+                    cursor
+                    typeSpeed={20}
+                    delaySpeed={1000}
+                  />
                 </code>
               </pre>
             )}
