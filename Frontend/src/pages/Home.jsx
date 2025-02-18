@@ -7,12 +7,18 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const textGenerate = async () => {
     console.log("clicked");
+
     setLoading(true);
+    setGeneratedText("");
+    setUserPrompt("");
+
+    const prompt = userPrompt; // Save the input before clearing
+    setUserPrompt("");
     try {
       const response = await axios.post(
         "https://lexigen3.onrender.com/generate-text",
         {
-          prompt: userPrompt,
+          prompt,
         }
       );
       setGeneratedText(response.data.generatedText);
@@ -36,6 +42,7 @@ export default function Home() {
               type="text"
               placeholder="Enter the prompt"
               className="w-full my-6 p-4 pr-24 border-2  text-black rounded-lg focus:outline-none bt"
+              value={userPrompt}
               onChange={(e) => setUserPrompt(e.target.value)}
             />
             <button
@@ -48,13 +55,15 @@ export default function Home() {
         </div>
         <div>
           {loading && <Loading />}
-          {generatedText && (
-            <textarea
-              className="mt-6 w-full max-w-2xl p-4 border-2 text-black rounded-lg focus:outline-none  resize-y overflow-auto   txt"
-              value={generatedText.replace(/\*\*/g, "").replace(/\*/g, "- ")}
-              readOnly
-            />
-          )}
+          <div className="max-w-2xl">
+            {generatedText && (
+              <pre className="mt-6 p-4 border-2 text-black rounded-lg focus:outline-none overflow-y-auto max-w-2xl w-full h-[28rem] txt">
+                <code className="block whitespace-pre-wrap break-words">
+                  {generatedText.replace(/\*\*/g, "").replace(/\*/g, "- ")}
+                </code>
+              </pre>
+            )}
+          </div>
         </div>
       </div>
     </div>
